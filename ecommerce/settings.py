@@ -13,10 +13,22 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 from datetime import timedelta
 import os
+import requests
+import environ
+from requests.auth import HTTPBasicAuth
+import logging
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+ENV_FILE = BASE_DIR / '.env'
 
+# Initialize environment variables
+env = environ.Env()
+environ.Env.read_env(ENV_FILE)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -198,3 +210,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
 ]
+
+access_token_url = env("access_token_url")
+consumer_key = env("consumer_key")
+consumer_secret = env("consumer_secret")
+requests.get(access_token_url,auth=HTTPBasicAuth(consumer_key, consumer_secret))
