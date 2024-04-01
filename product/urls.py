@@ -21,7 +21,7 @@ urlpatterns= [
     path("graphicscard-delete/<str:pk>/", views.GraphicsCardDeleteView.as_view()),
 
     path("laptop/", views.LaptopView.as_view()),
-    path("laptop/<str:pk>", views.LaptopDetailView.as_view()),
+    path("laptop/<str:pk>/", views.LaptopDetailView.as_view()),
     path("laptop-create/", views.LaptopCreateView.as_view()),
     path("laptop-update/<str:pk>/", views.LaptopEditView.as_view()),
     path("laptop-delete/<str:pk>/", views.LaptopDeleteView.as_view()),

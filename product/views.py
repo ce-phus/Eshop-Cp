@@ -78,15 +78,15 @@ class TFTEditView(APIView):
 
 class GamingPCView(APIView):
     def get(self, request):
-        tfts = GamingPC.objects.all()
-        serializer = GamingPC(tfts, many=True)
+        pc = GamingPC.objects.all()
+        serializer = GamingPC(pc, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
     
 class GamingPCDetailView(APIView):
     def get(self, request, pk):
         try:
-            tft = GamingPC.objects.all(id=pk)
-            serializer = GamingPCSerializer(tft)
+            pc = GamingPC.objects.all(id=pk)
+            serializer = GamingPCSerializer(pc)
             return Response(serializer.data, status=status.HTTP_200_OK)
         except TFTs.DoesNotExist:
             return Response({"detail": "TFT not found"}, status=status.HTTP_404_NOT_FOUND)
