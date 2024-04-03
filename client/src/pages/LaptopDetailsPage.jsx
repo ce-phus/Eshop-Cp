@@ -5,8 +5,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { deletelaptop, getLaptopDetails } from '../actions/laptopActions'
 import { Link } from 'react-router-dom'
 import { CREATE_LAPTOP_RESET, DELETE_LAPTOP_RESET, UPDATE_LAPTOP_RESET, MPESA_STK_PUSH_REQUEST } from '../constants'
+import { connect } from 'react-redux'
+import CartButton from '../components/CartButton'
+import { addToCart } from '../actions/cartActions'
 
-const LaptopDetailsPage = () => {
+const LaptopDetailsPage = ({ addToCart}) => {
 
   const router = useNavigate()
   const {id} = useParams()
@@ -26,6 +29,9 @@ const LaptopDetailsPage = () => {
 
   const baseUrl = 'http://localhost:8000';
   const fullImageUrl = baseUrl + laptop.image;
+
+  const item_type = 'laptops'
+  const [quantity, setQuantity] = useState(1); // State to manage quantity
 
   useEffect(()=>{
     if (id) {
@@ -73,16 +79,19 @@ const LaptopDetailsPage = () => {
                     <div>
                         <p className='font-semibold text-3xl text-gray-400'>{laptop.name}</p>
                         <hr className='my-8 bg-gray-700 rounded'></hr>
-                        {/* <p className='text-gray-500 text-lg'>{laptop.description}</p> */}
-                        <p className='text-lg text-gray-200 mt-10'>Price: <span className="text-accent ml-2">Ksh {laptop.price}</span></p>
+                        <p className='text-gray-500 text-lg'>{laptop.description}</p>
+                        <p className='text-lg font-bold text-gray-400 mt-10'>Price: <span className="text-gray-700 ml-2">Ksh {laptop.price}</span></p>
                     </div>
                     <div className='mb-5'>
                         <h2 className='text-3xl text-gray-400 font-semibold'>Buy</h2>
                         <hr className='my-8 bg-gray-700 rounded'></hr>
                         {laptop.stock ?
-                            <Link to={`/laptop/${laptop.id}/checkout`}>
+                        <div className=''>
+                          <Link to={`/laptop/${laptop.id}/checkout`} className=''>
                                 <button className='bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded '>Pay with Mpesa</button>
                             </Link>
+                            <CartButton  addToCart={addToCart} item_type={item_type} item_id={laptop.id} quantity={quantity}  />
+                        </div>
                             :
                             <div class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4" role="alert">
                             <p className="font-bold">Out of Stock</p>
@@ -127,4 +136,4 @@ const LaptopDetailsPage = () => {
   )
 }
 
-export default LaptopDetailsPage
+export default connect(null, {addToCart})(LaptopDetailsPage);

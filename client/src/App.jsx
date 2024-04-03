@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import SideNavbar from './components/SideNavbar'
 
-import { Home, LaptopDetailsPage, ProductListPage } from './pages';
+import { CartPage, Home, LaptopDetailsPage, ProductListPage } from './pages';
 
 
 function App() {
@@ -16,6 +16,7 @@ function App() {
         <Route path='/' element={<Home/>} exact/>
         <Route path='/laptop/' element={<ProductListPage/>} exact />
         <Route path='/laptop/:id/' element={<LaptopDetailsPage/>} exact />
+        <Route path='/cart/' element={<CartPage/>} exact/>
       </Routes>
       </div>
     </div>

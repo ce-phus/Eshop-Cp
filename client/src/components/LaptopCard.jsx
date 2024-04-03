@@ -37,10 +37,10 @@ const LaptopCard = ({ index, laptop, addToCart }) => {
                 >
 
                     <h3 className="text-white text-[20px] font-bold">{laptop.name}</h3>
-                    <p className="text-white text-[20px] ">{laptop.description}</p>
+                    {/* <p className="text-white text-[20px] ">{laptop.description}</p> */}
                     <h3 className="text-white text-[20px] font-bold">KSH {laptop.price}</h3>
                     <div>
-                        <CartButton  addToCart={addToCart} item_type={item_type} item_id={laptop.id} quantity={quantity}  />
+                        {/* <CartButton  addToCart={addToCart} item_type={item_type} item_id={laptop.id} quantity={quantity}  /> */}
                         <Link to={`/laptop/${laptop.id}`}>
                             <BuyButton />
                         </Link>

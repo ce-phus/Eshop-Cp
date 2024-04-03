@@ -18,9 +18,10 @@ class CartService:
     def add_item(self, item_type, item_id, quantity=1):
         item_id_str = str(item_id)
         if item_id_str not in self.cart:
-            self.cart[item_id_str]= {'type': item_type, "quantity":0, "details": {}}
+            self.cart[item_id_str] = {'type': item_type, "quantity": 0, "details": {}}
 
         item = None
+
         if item_type == "tfts":
             item = TFTs.objects.get(id=item_id)
         elif item_type == "gamingpc":
@@ -36,8 +37,13 @@ class CartService:
 
         if item:
             serializer = self.get_serializer(item_type, item)
-            self.cart[item_id_str]["details"] = serializer.data
-            self.cart[item_id_str]["quantity"] += quantity
+            if self.cart[item_id_str]["details"]:
+                # If the item details are already present, accumulate the price based on the quantity
+                self.cart[item_id_str]["quantity"] += quantity
+            else:
+                self.cart[item_id_str]["details"] = serializer.data
+                self.cart[item_id_str]["quantity"] = quantity
+        print("Cart after adding item:", self.cart)  
 
         self.save()
 

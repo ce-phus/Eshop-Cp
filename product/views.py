@@ -219,7 +219,7 @@ class LaptopView(APIView):
 class LaptopDetailView(APIView):
     def get(self, request, pk):
         try:
-            laptop = Laptops.objects.all(id=pk)
+            laptop = Laptops.objects.get(id=pk)
             serializer = LaptopsSerializer(laptop)
             return Response(serializer.data, status=status.HTTP_200_OK)
         except TFTs.DoesNotExist:
@@ -417,6 +417,7 @@ class ComputerPartsEditView(APIView):
 class CartAPIView(APIView):
 
     allowed_methods = ['POST', 'GET']  # Add 'POST' here
+    
     def post(self, request, *args, **kwargs):
         cart_service = CartService(request)
         action = request.data.get("action")
@@ -444,4 +445,10 @@ class CartAPIView(APIView):
             cart_service.clear_cart()
             return Response({"detail": "Cart cleared"}, status=status.HTTP_200_OK)
         else:
-            return Response({"detail": "Invalid action"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"detail": "Invalid action"}, status=status.HTTP_400_BAD_REQUEST)                   
+    
+    def get(self, request, *args, **kwargs):
+        cart_service = CartService(request)
+        total_price = cart_service.get_total_price()
+        print("Total Price: ",total_price)
+        return Response({"total_price": str(total_price)}, status=status.HTTP_200_OK)

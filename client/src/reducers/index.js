@@ -118,6 +118,7 @@ const allReducers = combineReducers({
     updateUserAddressReducer,
     deleteUserAddressReducer,
     getAllOrdersReducer,
+    cartReducer,
 })
 
 export default allReducers

@@ -12,7 +12,7 @@ import {
 
 const initialState = {
     cartItems: [],
-    totalPrice: 0,
+    totalPrice: 0, // Ensure totalPrice is initialized as a number
     loading: false,
     error: null
 };
@@ -29,7 +29,6 @@ export const cartReducer = (state = initialState, action) => {
             };
 
         case ADD_TO_CART_SUCCESS:
-            // Ensure that action.payload contains the new item to be added to the cart
             return {
                 ...state,
                 cartItems: [...state.cartItems, action.payload],
@@ -38,7 +37,6 @@ export const cartReducer = (state = initialState, action) => {
             };
 
         case REMOVE_FROM_CART_SUCCESS:
-            // Ensure that the item is correctly identified and filtered based on its ID
             return {
                 ...state,
                 cartItems: state.cartItems.filter(item => item.id !== action.payload.id),
@@ -47,10 +45,9 @@ export const cartReducer = (state = initialState, action) => {
             };
 
         case GET_TOTAL_PRICE_SUCCESS:
-            // Ensure that action.payload contains the updated total price
             return {
                 ...state,
-                totalPrice: action.payload,
+                totalPrice: state.totalPrice + parseFloat(action.payload), // Ensure totalPrice is parsed as a float
                 loading: false,
                 error: null
             };
@@ -58,7 +55,6 @@ export const cartReducer = (state = initialState, action) => {
         case ADD_TO_CART_FAIL:
         case REMOVE_FROM_CART_FAIL:
         case GET_TOTAL_PRICE_FAIL:
-            // Ensure that the payload contains relevant error messages
             return {
                 ...state,
                 loading: false,
