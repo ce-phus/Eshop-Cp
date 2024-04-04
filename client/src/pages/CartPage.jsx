@@ -1,23 +1,26 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeFromCart, getTotalPrice } from '../actions/cartActions';
+import { removeFromCart, getTotalPrice, addToCart } from '../actions/cartActions'; // Import the addToCart action
 import { Link } from 'react-router-dom';
 
 const CartPage = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector(state => state.cartReducer.cartItems || []);
-  const totalPrice = useSelector(state => state.cartReducer.totalPrice || 0); // Assign a default value of 0 if totalPrice is undefined
-  console.log("Total Price: ", totalPrice)
+  const totalPrice = useSelector(state => state.cartReducer.totalPrice || 0);
 
   useEffect(() => {
-    dispatch(getTotalPrice()); // Fetch total price from the server
+    dispatch(getTotalPrice());
   }, [dispatch]);
 
   const handleRemoveFromCart = (itemId) => {
     dispatch(removeFromCart(itemId));
   };
 
-  const baseUrl = 'http://localhost:8000'; // Base URL of your backend server
+  const handleAddQuantity = (item) => {
+    dispatch(addToCart(item.type, item.id, item.quantity + 1)); // Use the addToCart action to add 1 to the quantity
+  };
+
+  const baseUrl = 'http://localhost:8000';
 
   return (
     <div className="container mx-auto p-10">
@@ -28,7 +31,6 @@ const CartPage = () => {
         <div>
           {cartItems.map((cartItem, index) => (
             <div key={index}>
-              {/* Check if cartItem and cartItem.cart_items are defined */}
               {cartItem.cart_items && Object.keys(cartItem.cart_items).map((type, subIndex) => (
                 cartItem.cart_items[type].map((item, itemIndex) => (
                   <div key={itemIndex} className="flex justify-between items-center border-b border-gray-200 py-4">
@@ -40,6 +42,15 @@ const CartPage = () => {
                         <h2 className="text-lg font-bold text-primary">{item.name}</h2>
                         <p className="text-sm text-primary">Price: Ksh {item.price}</p>
                         <p className="text-sm text-gray-500">Description: {item.description}</p>
+                        <div>
+                          <button
+                            className="text-sm text-blue-500 mr-2"
+                            onClick={() => handleAddQuantity(item)}
+                          >
+                            + Add Quantity
+                          </button>
+                          <span className='text-primary'>Quantity: {item.quantity}</span>
+                        </div>
                       </div>
                     </div>
                     <button

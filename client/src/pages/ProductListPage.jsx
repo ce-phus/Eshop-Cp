@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getLaptopList } from "../actions/laptopActions"
 import { CREATE_LAPTOP_RESET } from '../constants'
 import LaptopList from '../components/LaptopList'
+import Footer from '../components/Footer'
 
 const ProductListPage = () => {
   const dispatch = useDispatch()
@@ -25,9 +26,17 @@ const ProductListPage = () => {
   }
 
   return (
-    <div>
-      <LaptopList laptopList={laptop}/>
-    </div>
+    <>
+      <div>
+        <LaptopList laptopList={laptop}/>
+      </div>
+
+      <div className='ml-20'>
+        <Footer/>
+      </div>
+    </>
+    
+     
   )
 }
 

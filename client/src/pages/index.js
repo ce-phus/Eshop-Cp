@@ -11,6 +11,7 @@ import Register from "./Register";
 import OrderListPage from "./OrderListPage";
 import ProductListPage from "./ProductListPage";
 import Home from "./Home";
+import Footer from "../components/Footer";
 
 export{
     AccountPage,
@@ -26,4 +27,5 @@ export{
     OrderListPage,
     ProductListPage,
     Home,
+    Footer
 }

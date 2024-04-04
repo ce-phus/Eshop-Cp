@@ -4,6 +4,18 @@ import CartButton from "./CartButton";
 import BuyButton from "./BuyButton";
 import Gallery from "./Gallery";
 import CartDropdown from "./CartDropdown";
+import Error from "./Error";
+import Spinner from "./Spinner";
+import CreateAddressComponent from "./CreateAddressComponent";
+import Hero from "./Hero";
+import Category from "./Category";
+import Category2 from "./Category2";
+import Services from "./Services";
+import Banner from "./Banner";
+import Product from "./Product";
+import Heading from "./Heading";
+import ProductCard from "./ProductCard";
+import Blogs from "./Blogs";
 
 export {
    LaptopCard,
@@ -11,5 +23,17 @@ export {
    CartButton,
    BuyButton,
    Gallery,
-   CartDropdown
+   CartDropdown,
+   Spinner,
+   Error,
+   CreateAddressComponent,
+   Hero,
+   Category,
+   Category2,
+   Services,
+   Banner,
+   Product,
+   Heading,
+   ProductCard,
+   Blogs
 }

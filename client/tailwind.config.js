@@ -14,10 +14,7 @@ module.exports = {
         accent: "#efdfbb",
         primary: "#181818",
         secondary: "#111111",
-        tertiary: "#151030",
-        "black-100": "#100d25",
-        "black-200": "#090325",
-        "white-100": "#f3f3f3",
+        tertiary: "#FFF200",
         grade: "#c30010"
       },
       boxShadow: {

@@ -6,6 +6,7 @@ import { FaSignInAlt, FaSignOutAlt, FaShoppingBag } from "react-icons/fa";
 import { AiOutlineUser, AiOutlineHeart } from "react-icons/ai";
 import { RiSettings4Line } from "react-icons/ri";
 import { FiShoppingCart } from "react-icons/fi";
+import { SiGnuprivacyguard } from "react-icons/si";
 import { Link } from "react-router-dom";
 
 const Home = () => {
@@ -15,8 +16,9 @@ const Home = () => {
     { name: "dashboard", link: "/", icon: MdOutlineDashboard },
     { name: "user", link: "/", icon: AiOutlineUser, margin: true },
     { name: "Cart", link: "/cart", icon: FiShoppingCart },
-    { name: "Sign In", link: "/", icon: FaSignInAlt },
-    { name: "Sign Out", link: "/", icon: FaSignOutAlt },
+    { name: "Sign In", link: "/login", icon: FaSignInAlt },
+    { name: "Sign Out", link: "/logout", icon: FaSignOutAlt },
+    { name: "Register", link: "/register/", icon: SiGnuprivacyguard },
     {
       name: "Products",
       link: "/laptop",
@@ -31,11 +33,11 @@ const Home = () => {
     },
     {
       name: "Settings",
-      link: "/settings",
+      link: "#",
       icon: RiSettings4Line,
       subMenus: [
-        { name: "Account Settings", link: "/settings/account" },
-        { name: "Address Settings", link: "/settings/address" },
+        { name: "Account Settings", link: "/account/" },
+        { name: "Address Settings", link: "/all-addresses/" },
         { name: "Order Settings", link: "/settings/orders" },
       ],
     },
