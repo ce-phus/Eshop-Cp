@@ -42,7 +42,7 @@ const Home = () => {
     AOS.refresh();
   }, []);
   return (
-    <div className='bg-white ml-20 '>
+    <div className='bg-white ml-20'>
       <Hero  />
       <Category/>
       <Category2/>

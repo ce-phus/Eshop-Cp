@@ -5,7 +5,7 @@ import Button from './Button'
 
 const Hero = () => {
   return (
-    <div className='container mt-20 mb-20'>
+    <div className='mt-20 mb-20'>
         <div className="overflow-hidden flex items-center justify-center rounded-3xl min-h-[550px] md:min-h-[650px] bg-gray-300">
             <div className='container pb-8 sm-pb-0'>
                 <div className='grid grid-cols-1 md:grid-cols-2'>

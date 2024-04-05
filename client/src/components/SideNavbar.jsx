@@ -1,23 +1,33 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 import { HiMenuAlt3 } from "react-icons/hi";
 import { MdOutlineDashboard } from "react-icons/md";
 import { FaSignInAlt, FaSignOutAlt, FaShoppingBag } from "react-icons/fa";
-import { AiOutlineUser, AiOutlineHeart } from "react-icons/ai";
+import { AiOutlineUser } from "react-icons/ai";
 import { RiSettings4Line } from "react-icons/ri";
 import { FiShoppingCart } from "react-icons/fi";
 import { SiGnuprivacyguard } from "react-icons/si";
 import { Link } from "react-router-dom";
+import { logout } from "../actions/userActions";
 
 const Home = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const cartItems = useSelector(state => state.cartReducer.cartItems || []);
+  // login reducer
+  const userLoginReducer = useSelector(state => state.userLoginReducer)
+  const { userInfo } = userLoginReducer
+
+  const logoutHandler = () => {
+    dispatch(logout());
+    navigate("/login");
+  };
 
   const menus = [
     { name: "dashboard", link: "/", icon: MdOutlineDashboard },
-    { name: "user", link: "/", icon: AiOutlineUser, margin: true },
-    { name: "Cart", link: "/cart", icon: FiShoppingCart },
+    { name: userInfo ? userInfo.username: "user", link: "/", icon: AiOutlineUser, margin: true },
     { name: "Sign In", link: "/login", icon: FaSignInAlt },
-    { name: "Sign Out", link: "/logout", icon: FaSignOutAlt },
     { name: "Register", link: "/register/", icon: SiGnuprivacyguard },
     {
       name: "Products",
@@ -26,7 +36,7 @@ const Home = () => {
       subMenus: [
         { name: "Laptops", link: "/laptop" },
         { name: "TFTs", link: "/products/tfts" },
-        { name: "Gaming PCs", link: "/products/gaming-pcs" },
+        { name: "Gaming PCs", link: "/pc" },
         { name: "Accessories", link: "/products/accessories" },
         { name: "Graphics Cards", link: "/products/graphics-cards" },
         { name: "Computer Parts", link: "/products/computer-parts" },
@@ -42,35 +52,33 @@ const Home = () => {
         { name: "Order Settings", link: "/settings/orders" },
       ],
     },
+    // Updated logout menu item
+    { name: "Sign Out", onClick: logoutHandler, icon: FaSignOutAlt },
   ];
 
-  // State to track the open submenu
   const [openMenu, setOpenMenu] = useState(null);
+  const [open, setOpen] = useState(true);
 
   // Function to toggle submenu
   const toggleSubMenu = (menuName) => {
     setOpenMenu(openMenu === menuName ? null : menuName);
   };
 
-  const [open, setOpen] = useState(true);
-
   return (
     <section className="flex gap-6">
       <div
-        className={` fixed bg-[#0e0e0e] min-h-screen ${
+        className={`fixed bg-[#0e0e0e] min-h-screen ${
           open ? "w-72" : "w-16"
         } duration-500 text-gray-100 px-4 z-10`}
       >
-        <div className="py-3 flex flex- justify-end">
-
+        <div className="py-3 flex justify-end">
           <HiMenuAlt3
             size={26}
             className="cursor-pointer"
             onClick={() => setOpen(!open)}
           />
           <Link to="/cart" className="">
-            <div><FiShoppingCart size="20" /></div>
-            
+            <FiShoppingCart size="20" />
             {cartItems.length > 0 && (
               <span className='absolute top-1 right-3 inline-flex items-center justify-center w-4 h-4 text-xs font-semibold text-white bg-red-500 rounded-full'>
                 {cartItems.length}
@@ -81,24 +89,41 @@ const Home = () => {
         <div className="mt-4 flex flex-col gap-4 relative">
           {menus.map((menu, i) => (
             <div key={i}>
-              <Link
-                to={menu.link}
-                className={`${
-                  menu.margin && "mt-5"
-                } group flex items-center text-sm gap-3.5 font-medium p-2 hover:bg-gray-800 rounded-md`}
-                onClick={() => menu.subMenus && toggleSubMenu(menu.name)}
-              >
-                <div>{React.createElement(menu.icon, { size: "20" })}</div>
-                <h2
-                  className={`whitespace-pre duration-500 ${
-                    !open && "opacity-0 translate-x-28 overflow-hidden"
-                  }`}
+              {menu.link ? (
+                <Link
+                  to={menu.link}
+                  className={`${menu.margin && "mt-5"
+                    } group flex items-center text-sm gap-3.5 font-medium p-2 hover:bg-gray-800 rounded-md`}
+                  onClick={() => menu.subMenus && toggleSubMenu(menu.name)}
                 >
-                  {menu.name}
-                </h2>
-              </Link>
-              {openMenu === menu.name &&
-                menu.subMenus.map((subMenu, index) => (
+                  {React.createElement(menu.icon, { size: "20" })}
+                  <h2
+                    className={`whitespace-pre duration-500 ${
+                      !open && "opacity-0 translate-x-28 overflow-hidden"
+                    }`}
+                  >
+                    {menu.name}
+                  </h2>
+                </Link>
+              ) : (
+                <div
+                  className={`${menu.margin && "mt-5"
+                    } group flex items-center text-sm gap-3.5 font-medium p-2 hover:bg-gray-800 rounded-md cursor-pointer`}
+                  onClick={menu.onClick}
+                >
+                  {React.createElement(menu.icon, { size: "20" })}
+                  <h2
+                    className={`whitespace-pre duration-500 ${
+                      !open && "opacity-0 translate-x-28 overflow-hidden"
+                    }`}
+                  >
+                    {menu.name}
+                  </h2>
+                </div>
+              )}
+              {/* \ Only show submenus if 'open' and 'openMenu' conditions are met */}
+              {open && openMenu === menu.name &&
+                menu.subMenus?.map((subMenu, index) => (
                   <Link
                     to={subMenu.link}
                     key={index}
@@ -111,7 +136,6 @@ const Home = () => {
           ))}
         </div>
       </div>
-      <div className="m-3 text-xl text-gray-90 font-semibold"></div>
     </section>
   );
 };

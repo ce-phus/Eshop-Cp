@@ -15,6 +15,9 @@ import Footer from "../components/Footer";
 import CheckoutPage from "./CheckoutPage";
 import Payments from "./Payments";
 import Product from "./Product";
+import PcListPage from "./PcListPage";
+import PcDetailsPage from "./PcDetailsPage";
+import PcCheckoutPage from "../components/PcCheckoutPage";
 
 export{
     AccountPage,
@@ -33,5 +36,8 @@ export{
     Footer,
     CheckoutPage,
     Payments,
-    Product
+    Product,
+    PcDetailsPage,
+    PcListPage,
+    PcCheckoutPage
 }

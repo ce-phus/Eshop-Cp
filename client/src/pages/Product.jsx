@@ -13,6 +13,7 @@ import Img4 from "../assets/products/GamingPc.jpg"
 import Img5 from "../assets/products/GamingPC1.jpg"
 import Img6 from "../assets/products/laptop.jpg"
 import Img7 from "../assets/products/graphics.jpg"
+import Footer from '../components/Footer';
 
 const ProductsData = [
   {
@@ -49,7 +50,7 @@ const ProductsData2 = [
     id: 1,
     img: Img5,
     title: "PCs",
-    path: "/laptop",
+    path: "/pc",
     aosDelay: "0",
   },
   {
@@ -99,6 +100,7 @@ const Product = () => {
         <ProductCard data={ProductsData} />
         <ProductCard data={ProductsData2} />
       </div>
+      <Footer/>
     </div>
     
   )

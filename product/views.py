@@ -17,7 +17,7 @@ class TFTsView(APIView):
 class TFTsDetailView(APIView):
     def get(self, request, pk):
         try:
-            tft = TFTs.objects.all(id=pk)
+            tft = TFTs.objects.get(id=pk)
             serializer = TFTsSerializer(tft)
             return Response(serializer.data, status=status.HTTP_200_OK)
         except TFTs.DoesNotExist:
@@ -79,13 +79,13 @@ class TFTEditView(APIView):
 class GamingPCView(APIView):
     def get(self, request):
         pc = GamingPC.objects.all()
-        serializer = GamingPC(pc, many=True)
+        serializer = GamingPCSerializer(pc, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
     
 class GamingPCDetailView(APIView):
     def get(self, request, pk):
         try:
-            pc = GamingPC.objects.all(id=pk)
+            pc = GamingPC.objects.get(id=pk)
             serializer = GamingPCSerializer(pc)
             return Response(serializer.data, status=status.HTTP_200_OK)
         except TFTs.DoesNotExist:

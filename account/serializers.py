@@ -12,8 +12,8 @@ class UserSerializer(serializers.ModelSerializer):
         model=User
         fields=["id", "username", "email", "admin"]
 
-        def get_admin(self, obj):
-            return obj.is_staff
+    def get_admin(self, obj):
+        return obj.is_staff
 
 # creating tokens manually *with user regsitration we will also create tokens
 class UserRegisterTokenSerializer(UserSerializer):

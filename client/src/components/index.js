@@ -18,6 +18,8 @@ import ProductCard from "./ProductCard";
 import Blogs from "./Blogs";
 import ChargeMpesaComponent from "./ChargeMpesaComponent";
 import UserAddressComponent from "./UserAddressComponent";
+import PcCard from "./PcCard";
+import PcList from "./PcList";
 
 export {
    LaptopCard,
@@ -39,5 +41,7 @@ export {
    ProductCard,
    Blogs,
    ChargeMpesaComponent,
-   UserAddressComponent
+   UserAddressComponent,
+   PcCard,
+   PcList
 }
