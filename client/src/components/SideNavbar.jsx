@@ -31,7 +31,7 @@ const Home = () => {
     { name: "Register", link: "/register/", icon: SiGnuprivacyguard },
     {
       name: "Products",
-      link: "/product/",
+      link: "/product",
       icon: FaShoppingBag,
       subMenus: [
         { name: "Laptops", link: "/laptop" },
@@ -87,29 +87,31 @@ const Home = () => {
           </Link>
         </div>
         <div className="mt-4 flex flex-col gap-4 relative">
-          {menus.map((menu, i) => (
-            <div key={i}>
-              <div
-                className={`${menu.margin && "mt-5"
-                  } group flex items-center text-sm gap-3.5 font-medium p-2 hover:bg-gray-800 rounded-md`}
-                onClick={() => menu.subMenus && toggleSubMenu(menu.name)}
-              >
-                <div>{React.createElement(menu.icon, { size: "20" })}</div>
-                <h2 className={`whitespace-pre ${!open && "opacity-0"}`}>{menu.name}</h2>
-              </div>
-              {/* Only show submenus if 'open' and 'openMenu' conditions are met */}
-              {open && openMenu === menu.name &&
-                menu.subMenus?.map((subMenu, index) => (
-                  <Link
-                    to={subMenu.link}
-                    key={index}
-                    className="pl-14 py-2 block text-sm text-gray-200 hover:bg-gray-800"
-                  >
-                    {subMenu.name}
-                  </Link>
-                ))}
-            </div>
-          ))}
+        {menus.map((menu, i) => (
+          <div key={i}>
+            <Link
+              to={menu.link} 
+              className={`${menu.margin && "mt-5"
+                } group flex items-center text-sm gap-3.5 font-medium p-2 hover:bg-gray-800 rounded-md`}
+              onClick={() => menu.subMenus && toggleSubMenu(menu.name)}
+            >
+              <div>{React.createElement(menu.icon, { size: "20" })}</div>
+              <h2 className={`whitespace-pre ${!open && "opacity-0"}`}>{menu.name}</h2>
+            </Link>
+            {/* Only show submenus if 'open' and 'openMenu' conditions are met */}
+            {open && openMenu === menu.name &&
+              menu.subMenus?.map((subMenu, index) => (
+                <Link
+                  to={subMenu.link}
+                  key={index}
+                  className="pl-14 py-2 block text-sm text-gray-200 hover:bg-gray-800"
+                >
+                  {subMenu.name}
+                </Link>
+              ))}
+          </div>
+        ))}
+
         </div>
       </div>
     </section>
