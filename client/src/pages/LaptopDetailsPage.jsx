@@ -87,7 +87,7 @@ const LaptopDetailsPage = ({ addToCart}) => {
                         <hr className='my-8 bg-gray-700 rounded'></hr>
                         {laptop.stock ?
                         <div className=''>
-                          <Link to={`/laptop/${laptop.id}/checkout`} className=''>
+                          <Link to={`/laptop/${laptop.id}/checkout/`} className=''>
                                 <button className='bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded '>Pay with Mpesa</button>
                             </Link>
                             <CartButton  addToCart={addToCart} item_type={item_type} item_id={laptop.id} quantity={quantity}  />

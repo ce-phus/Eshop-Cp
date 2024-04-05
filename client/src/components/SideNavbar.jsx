@@ -21,9 +21,10 @@ const Home = () => {
     { name: "Register", link: "/register/", icon: SiGnuprivacyguard },
     {
       name: "Products",
-      link: "/laptop",
+      link: "/product/",
       icon: FaShoppingBag,
       subMenus: [
+        { name: "Laptops", link: "/laptop" },
         { name: "TFTs", link: "/products/tfts" },
         { name: "Gaming PCs", link: "/products/gaming-pcs" },
         { name: "Accessories", link: "/products/accessories" },

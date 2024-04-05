@@ -39,12 +39,14 @@ SECRET_KEY = "django-insecure-*$h_)as(s+tq^-h-u+l-slbxyfoe_jaozhymiz=$z%l3js$clp
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'admin_material.apps.AdminMaterialDashboardConfig',
+    'admin_soft.apps.AdminSoftDashboardConfig',
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",

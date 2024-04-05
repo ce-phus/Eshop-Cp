@@ -25,7 +25,7 @@ module.exports = {
       },
       backgroundImage: {
         "hero-pattern": "url('/src/assets/hero-slider-1.jpg')",
-        "hero-bg": "url('/src/assets/testimonial-bg.jpg')",
+        "hero-bg": "url('/src/assets/products/GamingPc.jpg')",
         "hero-footer": "url('/src/assets/footer-bg.jpg')"
       },
     },

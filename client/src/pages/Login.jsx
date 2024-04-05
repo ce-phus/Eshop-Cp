@@ -20,7 +20,7 @@ const Login = () => {
 
   useEffect(() => {
     if (userInfo) {
-      router('/') //homepage
+      router('/') //register
     }
   }, [router, userInfo])
 
@@ -52,7 +52,7 @@ const Login = () => {
 
           <div className='flex flex-col text-light'>
 
-            <div className='mt-10'>
+            <div className='mt-10 text-primary'>
               Do not have an account?
             </div>
             <div className='flex flex-row-reverse mt-3'>

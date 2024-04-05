@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import SideNavbar from './components/SideNavbar'
 
-import { AccountPage, AllAddressOfUsersPage, CartPage, Home, LaptopDetailsPage, Login, ProductListPage, Register } from './pages';
+import { AccountPage, AllAddressOfUsersPage, CartPage, CheckoutPage, Home, LaptopDetailsPage, Login, Payments, Product, ProductListPage, Register } from './pages';
 
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
    <Router>
     <div className='bg-white flex '>
       <SideNavbar open={open}/>
-      <div className={`pl-[${open ? '72' : ''}] flex-1 px-`}>
+      <div className={`pl-[${open ? '20' : ''}] flex-1 px-`}>
       <Routes>
         <Route path='/' element={<Home/>} exact/>
         <Route path='/laptop/' element={<ProductListPage/>} exact />
@@ -21,6 +21,9 @@ function App() {
         <Route path='/register/' element={<Register/>} exact/>
         <Route path='/account/' element={<AccountPage/>} exact/>
         <Route path='/all-addresses/' element={<AllAddressOfUsersPage/>} exact/>
+        <Route path="laptop/:id/checkout/" element={<CheckoutPage/>} exact/>
+        <Route path="/payments-status/" element={<Payments/>} exact/>
+        <Route path='/product/' element={<Product/>} exact/>
       </Routes>
       </div>
     </div>

@@ -12,6 +12,9 @@ import OrderListPage from "./OrderListPage";
 import ProductListPage from "./ProductListPage";
 import Home from "./Home";
 import Footer from "../components/Footer";
+import CheckoutPage from "./CheckoutPage";
+import Payments from "./Payments";
+import Product from "./Product";
 
 export{
     AccountPage,
@@ -27,5 +30,8 @@ export{
     OrderListPage,
     ProductListPage,
     Home,
-    Footer
+    Footer,
+    CheckoutPage,
+    Payments,
+    Product
 }

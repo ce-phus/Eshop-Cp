@@ -16,6 +16,8 @@ import Product from "./Product";
 import Heading from "./Heading";
 import ProductCard from "./ProductCard";
 import Blogs from "./Blogs";
+import ChargeMpesaComponent from "./ChargeMpesaComponent";
+import UserAddressComponent from "./UserAddressComponent";
 
 export {
    LaptopCard,
@@ -35,5 +37,7 @@ export {
    Product,
    Heading,
    ProductCard,
-   Blogs
+   Blogs,
+   ChargeMpesaComponent,
+   UserAddressComponent
 }
