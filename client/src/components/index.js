@@ -20,6 +20,7 @@ import ChargeMpesaComponent from "./ChargeMpesaComponent";
 import UserAddressComponent from "./UserAddressComponent";
 import PcCard from "./PcCard";
 import PcList from "./PcList";
+import { dateCheck } from "./GetDate";
 
 export {
    LaptopCard,
@@ -43,5 +44,6 @@ export {
    ChargeMpesaComponent,
    UserAddressComponent,
    PcCard,
-   PcList
+   PcList,
+   dateCheck
 }

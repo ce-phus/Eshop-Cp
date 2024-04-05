@@ -29,6 +29,11 @@ const PcListPage = () => {
     <>
       <div>
         <PcList pcList={pc} />
+        
+      </div>
+
+      <div className='flex items-center justify-center w-full'>
+      <Footer/>
       </div>
     </>
   )

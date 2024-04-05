@@ -49,7 +49,7 @@ const Home = () => {
       subMenus: [
         { name: "Account Settings", link: "/account/" },
         { name: "Address Settings", link: "/all-addresses/" },
-        { name: "Order Settings", link: "/settings/orders" },
+        { name: "Order Settings", link: "/orders" },
       ],
     },
     // Updated logout menu item
@@ -89,39 +89,15 @@ const Home = () => {
         <div className="mt-4 flex flex-col gap-4 relative">
           {menus.map((menu, i) => (
             <div key={i}>
-              {menu.link ? (
-                <Link
-                  to={menu.link}
-                  className={`${menu.margin && "mt-5"
-                    } group flex items-center text-sm gap-3.5 font-medium p-2 hover:bg-gray-800 rounded-md`}
-                  onClick={() => menu.subMenus && toggleSubMenu(menu.name)}
-                >
-                  {React.createElement(menu.icon, { size: "20" })}
-                  <h2
-                    className={`whitespace-pre duration-500 ${
-                      !open && "opacity-0 translate-x-28 overflow-hidden"
-                    }`}
-                  >
-                    {menu.name}
-                  </h2>
-                </Link>
-              ) : (
-                <div
-                  className={`${menu.margin && "mt-5"
-                    } group flex items-center text-sm gap-3.5 font-medium p-2 hover:bg-gray-800 rounded-md cursor-pointer`}
-                  onClick={menu.onClick}
-                >
-                  {React.createElement(menu.icon, { size: "20" })}
-                  <h2
-                    className={`whitespace-pre duration-500 ${
-                      !open && "opacity-0 translate-x-28 overflow-hidden"
-                    }`}
-                  >
-                    {menu.name}
-                  </h2>
-                </div>
-              )}
-              {/* \ Only show submenus if 'open' and 'openMenu' conditions are met */}
+              <div
+                className={`${menu.margin && "mt-5"
+                  } group flex items-center text-sm gap-3.5 font-medium p-2 hover:bg-gray-800 rounded-md`}
+                onClick={() => menu.subMenus && toggleSubMenu(menu.name)}
+              >
+                <div>{React.createElement(menu.icon, { size: "20" })}</div>
+                <h2 className={`whitespace-pre ${!open && "opacity-0"}`}>{menu.name}</h2>
+              </div>
+              {/* Only show submenus if 'open' and 'openMenu' conditions are met */}
               {open && openMenu === menu.name &&
                 menu.subMenus?.map((subMenu, index) => (
                   <Link

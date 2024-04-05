@@ -4,7 +4,7 @@ import SideNavbar from './components/SideNavbar'
 import { AiOutlineUser,} from "react-icons/ai";
 
 
-import { AccountPage, AllAddressOfUsersPage, CartPage, CheckoutPage, Home, LaptopDetailsPage, Login, Payments, PcCheckoutPage, PcDetailsPage, PcListPage, Product, ProductListPage, Register } from './pages';
+import { AccountPage, AllAddressOfUsersPage, CartPage, CheckoutPage, Home, LaptopDetailsPage, Login, OrderListPage, Payments, PcCheckoutPage, PcDetailsPage, PcListPage, Product, ProductListPage, Register } from './pages';
 
 
 function App() {
@@ -29,6 +29,7 @@ function App() {
         <Route path='/pc/' element={<PcListPage/>} exact/>
         <Route path='/pc/:id/' element={<PcDetailsPage/>} exact/>
         <Route path='/pc/:id/pccheckout' element={<PcCheckoutPage/>} exact/>
+        <Route path='/orders/' element={<OrderListPage/>} exact />
       </Routes>
       </div>
     </div>

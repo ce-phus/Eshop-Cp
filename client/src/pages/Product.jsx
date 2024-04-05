@@ -41,7 +41,7 @@ const ProductsData = [
     id: 4,
     img: Img4,
     title: "Gaming Pc's",
-    path: "/laptop",
+    path: "/pc",
     aosDelay: "600",
   },
 ];
@@ -65,7 +65,7 @@ const ProductsData2 = [
     id: 3,
     img: Img7,
     title: "Graphics Card",
-    link: "/graphics",
+    link: "/laptop",
     aosDelay: "400",
   },
   {
