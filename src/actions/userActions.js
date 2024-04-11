@@ -68,7 +68,7 @@ import {
         }
   
         const { data } = await axios.post(
-            'http://102.212.245.33/account/login/',
+            'http://102.212.245.33/api/account/login/',
             { 'username': username, 'password': password },
             config
         )
@@ -111,7 +111,7 @@ import {
             }
         }
   
-        const { data } = await axios.post(`http://102.212.245.33/account/register/`,
+        const { data } = await axios.post(`http://102.212.245.33/api/account/register/`,
             { 'username': username, 'email': email, 'password': password, "confirm_password":confirm_password},
             config
         )
@@ -156,7 +156,7 @@ import {
         }
   
         // call api
-        const { data } = await axios.get("http://102.212.245.33/payments/check-token/", config)
+        const { data } = await axios.get("http://102.212.245.33/api/payments/check-token/", config)
   
         dispatch({
             type: CHECK_TOKEN_VALID_SUCCESS,
@@ -201,7 +201,7 @@ import {
     //   console.log(`Using token: ${userInfo.token}`);
 
       // Construct the URL using userId
-      const { data } = await axios.get(`http://102.212.245.33/account/user/${userId}/`, config);
+      const { data } = await axios.get(`http://102.212.245.33/api/account/user/${userId}/`, config);
   
       dispatch({
         type: USER_DETAILS_SUCCESS,
@@ -242,7 +242,7 @@ import {
   
         // call api
         const { data } = await axios.put(
-            `http://102.212.245.33/account/user_update/${userInfo.id}/`,
+            `http://102.212.245.33/api/account/user_update/${userInfo.id}/`,
             {
                 "username": userData.username,
                 "email": userData.email,
@@ -287,7 +287,7 @@ import {
   
         // call api
         const { data } = await axios.post(
-            `http://102.212.245.33/account/user_delete/${userData.id}/`,
+            `http://102.212.245.33/api/account/user_delete/${userData.id}/`,
             {
                 "password": userData.password
             },
@@ -328,7 +328,7 @@ import {
   
         // call api
         const { data } = await axios.get(
-            "http://102.212.245.33/account/all-address-details/",
+            "http://102.212.245.33/api/account/all-address-details/",
             config
         )
   
@@ -366,7 +366,7 @@ import {
   
         // call api
         const { data } = await axios.get(
-            `http://102.212.245.33/account/address-details/${id}/`,
+            `http://102.212.245.33/api/account/address-details/${id}/`,
             config
         )
   
@@ -405,7 +405,7 @@ import {
   
         // call api
         const { data } = await axios.post(
-            "http://102.212.245.33/account/create-address/",
+            "http://102.212.245.33/api/account/create-address/",
             addressData,
             config
         )
@@ -444,7 +444,7 @@ import {
   
         // call api
         const { data } = await axios.put(
-            `http://102.212.245.33/account/update-address/${id}/`,
+            `http://102.212.245.33/api/account/update-address/${id}/`,
             addressData,
             config
         )
@@ -483,7 +483,7 @@ import {
   
         // call api
         const { data } = await axios.delete(
-            `http://102.212.245.33/account/delete-address/${id}/`,
+            `http://102.212.245.33/api/account/delete-address/${id}/`,
             config
         )
   
@@ -520,7 +520,7 @@ import {
   
         // call api
         const { data } = await axios.get(
-            `http://102.212.245.33/account/all-orders-list/`,
+            `http://102.212.245.33/api/account/all-orders-list/`,
             config
         )
   

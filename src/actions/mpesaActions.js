@@ -26,7 +26,7 @@ export const mpesastkpush = (payload, item_type, id) => async (dispatch, getStat
         };
 
         // console.log(`item_type: ${item_type}, id: ${id}`);
-        const { data } = await axios.post(`http://102.212.245.33/payments/checkout/${item_type}/${id}/`, payload, config);
+        const { data } = await axios.post(`http://102.212.245.33/api/payments/checkout/${item_type}/${id}/`, payload, config);
 
 
 
@@ -57,7 +57,7 @@ export const mpesaCallbackHandler = (callbackData) => async (dispatch) => {
             },
         };
 
-        const { data } = await axios.post('http://102.212.245.33/api/callback/', callbackData, config);
+        const { data } = await axios.post('http://102.212.245.33/api/payments/callback/', callbackData, config);
 
         dispatch({
             type: MPESA_CALLBACK_HANDLER_SUCCESS,
