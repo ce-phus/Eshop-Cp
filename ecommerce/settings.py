@@ -196,10 +196,10 @@ SIMPLE_JWT = {
 STATIC_URL = "/static/"
 MEDIA_URL = "/images/"
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),  # Add your additional static file directories here if needed
+    os.path.join(BASE_DIR, 'dist/static'),  # Add your additional static file directories here if needed
 ]
 
 MEDIA_ROOT = 'static/images'
@@ -217,6 +217,8 @@ CORS_ALLOWED_ORIGINS = [
 CORS_ORIGIN_WHITELIST = [
     'http://102.212.245.33:5173', 
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 access_token_url = env("access_token_url")
 consumer_key = env("consumer_key")
