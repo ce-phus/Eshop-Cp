@@ -22,10 +22,10 @@ from django.conf import settings
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('supersecret/', include('admin_material.urls')),
-    path('secret/', include('admin_soft.urls')),
-    path("account/", include("account.urls")),
+    path('api/secret/', include('admin_soft.urls')),
+    path("api/account/", include("account.urls")),
     path("api/", include("product.urls")),
-    path("payments/", include("payments.urls"))
+    path("api/payments/", include("payments.urls"))
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
