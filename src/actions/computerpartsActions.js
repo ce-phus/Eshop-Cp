@@ -1,25 +1,24 @@
 import axios from "axios";
-
 import {
-    GAMINGPC_LIST_REQUEST,
-    GAMINGPC_LIST_SUCCESS,
-    GAMINGPC_LIST_FAIL,
+    COMPUTERPARTS_LIST_REQUEST,
+    COMPUTERPARTS_LIST_SUCCESS,
+    COMPUTERPARTS_LIST_FAIL,
 
-    CREATE_GAMINGPC_REQUEST,
-    CREATE_GAMINGPC_FAIL,
-    CREATE_GAMINGPC_SUCCESS,
+    CREATE_COMPUTERPARTS_REQUEST,
+    CREATE_COMPUTERPARTS_FAIL,
+    CREATE_COMPUTERPARTS_SUCCESS,
 
-    DELETE_GAMINGPC_REQUEST,
-    DELETE_GAMINGPC_SUCCESS,
-    DELETE_GAMINGPC_FAIL,
+    DELETE_COMPUTERPARTS_REQUEST,
+    DELETE_COMPUTERPARTS_SUCCESS,
+    DELETE_COMPUTERPARTS_FAIL,
 
-    GAMINGPC_DETAILS_REQUEST,
-    GAMINGPC_DETAILS_SUCCESS,
-    GAMINGPC_DETAILS_FAIL,
+    COMPUTERPARTS_DETAILS_REQUEST,
+    COMPUTERPARTS_DETAILS_SUCCESS,
+    COMPUTERPARTS_DETAILS_FAIL,
 
-    UPDATE_GAMINGPC_REQUEST,
-    UPDATE_GAMINGPC_SUCCESS,
-    UPDATE_GAMINGPC_FAIL,
+    UPDATE_COMPUTERPARTS_REQUEST,
+    UPDATE_COMPUTERPARTS_FAIL,
+    UPDATE_COMPUTERPARTS_SUCCESS,
 
     CHANGE_DELIVERY_STATUS_FAIL,
     CHANGE_DELIVERY_STATUS_REQUEST,
@@ -27,15 +26,15 @@ import {
 
 } from "../constants/index"
 
-// gamingpc list
-export const getGamingpcList = () => async (dispatch) => {
+//COMPUTERPARTS LIST
+export const getComputerPartsList = () => async (dispatch) => {
     try {
         dispatch({
-            type: GAMINGPC_LIST_REQUEST
+            type: COMPUTERPARTS_LIST_REQUEST
         })
 
         // call api
-        const { data } = await axios.get("http://127.0.0.1:8000/api/pc/", {
+        const { data } = await axios.get("http://102.212.245.33/api/computerparts/", {
             method: 'POST',
             mode: 'cors',
             headers:{
@@ -43,41 +42,41 @@ export const getGamingpcList = () => async (dispatch) => {
             }
         })
         dispatch({
-            type: GAMINGPC_LIST_SUCCESS,
+            type: COMPUTERPARTS_LIST_SUCCESS,
             payload: data
         })
     } catch (error) {
         dispatch({
-            type: GAMINGPC_LIST_FAIL,
+            type: COMPUTERPARTS_LIST_FAIL,
             payload: error.message
         })
     }
 }
 
-export const getGamingPcDetails = (id) => async (dispatch) =>{
+export const getComputerPartsDetails = (id) => async (dispatch) =>{
     try {
         dispatch ({
-            type: GAMINGPC_DETAILS_REQUEST
+            type: COMPUTERPARTS_DETAILS_REQUEST
         })
 
         // call api
-        const { data } = await axios.get(`http://127.0.0.1:8000/api/pc/${id}/`)
+        const { data } = await axios.get(`http://102.212.245.33/api/computerparts/${id}/`)
         dispatch({
-            type: GAMINGPC_DETAILS_SUCCESS,
+            type: COMPUTERPARTS_DETAILS_SUCCESS,
             payload: data
         })
     } catch (error) {
         dispatch({
-            type: GAMINGPC_DETAILS_FAIL,
+            type: COMPUTERPARTS_DETAILS_FAIL,
             payload: error.message
         })
     }
 }
 
-export const creategamingpc = (pc) => async (dispatch, getState) => {
+export const createcomputerparts = (parts) => async (dispatch, getState) => {
     try {
         dispatch({
-            type:CREATE_GAMINGPC_REQUEST,
+            type:CREATE_COMPUTERPARTS_REQUEST,
         })
 
         // login reducer
@@ -93,28 +92,28 @@ export const creategamingpc = (pc) => async (dispatch, getState) => {
         }
 
         const { data } = await axios.post(
-            "http://127.0.0.1:8000/api/pc-create/",
-            breakfast,
+            "http://102.212.245.33/api/computerparts-create/",
+            parts,
             config
         )
 
         dispatch({
-            type: CREATE_GAMINGPC_SUCCESS,
+            type: CREATE_COMPUTERPARTS_SUCCESS,
             payload: data
         })
     } catch (error) {
         dispatch({
-            type: CREATE_GAMINGPC_FAIL,
+            type: CREATE_COMPUTERPARTS_FAIL,
             payload: error.response && error.response.data.detail ? error.response.data.detail : error.message
         })
     }
 }
 
-// delete GAMING PC
-export const deletegamingpc = (id) => async (dispatch, getState) => {
+// delete computer parts
+export const deletecomputerparts = (id) => async (dispatch, getState) => {
     try {
         dispatch({
-            type:DELETE_GAMINGPC_REQUEST,
+            type:DELETE_COMPUTERPARTS_REQUEST,
         })
 
         // login reducer
@@ -130,27 +129,27 @@ export const deletegamingpc = (id) => async (dispatch, getState) => {
         }
 
         const { data } = await axios.delete(
-            `http://127.0.0.1:8000/api/pc-delete/${id}/`,
+            `http://102.212.245.33/api/computerparts-delete/${id}/`,
             config
         )
 
         dispatch({
-            type: DELETE_GAMINGPC_SUCCESS,
+            type: DELETE_COMPUTERPARTS_SUCCESS,
             payload: data
         })
     } catch (error) {
         dispatch({
-            type: DELETE_GAMINGPC_FAIL,
+            type: DELETE_COMPUTERPARTS_FAIL,
             payload: error.response && error.response.data.detail ? error.response.data.detail : error.message
         })
     }
 }
 
-// update Gaming Pc
-export const updategamingpc = (id, pc) => async (dispatch, getState) => {
+// update Computer parts
+export const updatecomputerparts = (id, parts) => async (dispatch, getState) => {
     try {
         dispatch({
-            type:UPDATE_GAMINGPC_REQUEST,
+            type:UPDATE_COMPUTERPARTS_REQUEST,
         })
 
         // login reducer
@@ -166,18 +165,18 @@ export const updategamingpc = (id, pc) => async (dispatch, getState) => {
         }
 
         const { data } = await axios.put(
-            `http://127.0.0.1:8000/api/pc-update/${id}/`,
-            pc,
+            `http://102.212.245.33/api/computerparts-update/${id}/`,
+            parts,
             config
         )
 
         dispatch({
-            type: UPDATE_GAMINGPC_SUCCESS,
+            type: UPDATE_COMPUTERPARTS_SUCCESS,
             payload: data
         })
     } catch (error) {
         dispatch({
-            type: UPDATE_GAMINGPC_FAIL,
+            type: UPDATE_PARTS_FAIL,
             payload: error.response && error.response.data.detail ? error.response.data.detail : error.message
         })
     }
@@ -205,7 +204,7 @@ export const changeDeliveryStatus = (id, breakfast) => async (dispatch, getState
 
         // api call
         const { data } = await axios.put(
-            `http://127.0.0.1:8000/account/change-order-status/${id}/`,
+            `http://102.212.245.33/account/change-order-status/${id}/`,
             breakfast,
             config
         )

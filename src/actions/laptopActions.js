@@ -1,40 +1,40 @@
-import axios from 'axios'
-
+import axios from "axios"
 import {
-    GRAPHICSCARD_LIST_REQUEST,
-    GRAPHICSCARD_LIST_SUCCESS,
-    GRAPHICSCARD_LIST_FAIL,
+    LAPTOP_LIST_REQUEST,
+    LAPTOP_LIST_SUCCESS,
+    LAPTOP_LIST_FAIL,
 
-    CREATE_GRAPHICSCARD_REQUEST,
-    CREATE_GRAPHICSCARD_SUCCESS,
-    CREATE_GRAPHICSCARD_FAIL,
+    CREATE_LAPTOP_REQUEST,
+    CREATE_LAPTOP_SUCCESS,
+    CREATE_LAPTOP_FAIL,
 
-    DELETE_GRAPHICSCARD_REQUEST,
-    DELETE_GRAPHICSCARD_SUCCESS,
-    DELETE_GRAPHICSCARD_FAIL,
+    DELETE_LAPTOP_FAIL,
+    DELETE_LAPTOP_REQUEST,
+    DELETE_LAPTOP_SUCCESS,
 
-    GRAPHICSCARD_DETAILS_REQUEST,
-    GRAPHICSCARD_DETAILS_SUCCESS,
-    GRAPHICSCARD_DETAILS_FAIL,
+    LAPTOP_DETAILS_REQUEST,
+    LAPTOP_DETAILS_SUCCESS,
+    LAPTOP_DETAILS_FAIL,
 
-    UPDATE_GRAPHICSCARD_REQUEST,
-    UPDATE_GRAPHICSCARD_SUCCESS,
-    UPDATE_GRAPHICSCARD_FAIL,
+    UPDATE_LAPTOP_REQUEST,
+    UPDATE_LAPTOP_SUCCESS,
+    UPDATE_LAPTOP_FAIL,
 
     CHANGE_DELIVERY_STATUS_FAIL,
     CHANGE_DELIVERY_STATUS_REQUEST,
     CHANGE_DELIVERY_STATUS_SUCCESS,
+
 } from "../constants/index"
 
-// graphics card list
-export const getGraphicsCardList = () => async (dispatch) => {
+// LAPTOP list
+export const getLaptopList = () => async (dispatch) => {
     try {
         dispatch({
-            type: GRAPHICSCARD_LIST_REQUEST
+            type: LAPTOP_LIST_REQUEST
         })
 
         // call api
-        const { data } = await axios.get("http://127.0.0.1:8000/api/graphicscard/", {
+        const { data } = await axios.get("http://102.212.245.33/api/laptop/", {
             method: 'POST',
             mode: 'cors',
             headers:{
@@ -42,41 +42,41 @@ export const getGraphicsCardList = () => async (dispatch) => {
             }
         })
         dispatch({
-            type: GRAPHICSCARD_LIST_SUCCESS,
+            type: LAPTOP_LIST_SUCCESS,
             payload: data
         })
     } catch (error) {
         dispatch({
-            type: GRAPHICSCARD_LIST_FAIL,
+            type: LAPTOP_LIST_FAIL,
             payload: error.message
         })
     }
 }
 
-export const getGraphicsCardDetails = (id) => async (dispatch) =>{
+export const getLaptopDetails = (id) => async (dispatch) =>{
     try {
         dispatch ({
-            type: GRAPHICSCARD_DETAILS_REQUEST
+            type: LAPTOP_DETAILS_REQUEST
         })
 
         // call api
-        const { data } = await axios.get(`http://127.0.0.1:8000/api/graphicscard/${id}/`)
+        const { data } = await axios.get(`http://102.212.245.33/api/laptop/${id}/`)
         dispatch({
-            type: GRAPHICSCARD_DETAILS_SUCCESS,
+            type: LAPTOP_DETAILS_SUCCESS,
             payload: data
         })
     } catch (error) {
         dispatch({
-            type: GRAPHICSCARD_DETAILS_FAIL,
+            type: LAPTOP_DETAILS_FAIL,
             payload: error.message
         })
     }
 }
 
-export const creategraphicscard = (graphicscard) => async (dispatch, getState) => {
+export const createlaptop = (laptop) => async (dispatch, getState) => {
     try {
         dispatch({
-            type:CREATE_GRAPHICSCARD_REQUEST,
+            type:CREATE_LAPTOP_REQUEST,
         })
 
         // login reducer
@@ -92,28 +92,28 @@ export const creategraphicscard = (graphicscard) => async (dispatch, getState) =
         }
 
         const { data } = await axios.post(
-            "http://127.0.0.1:8000/api/graphicscard-create/",
-            graphicscard,
+            "http://102.212.245.33/api/laptop-create/",
+            laptop,
             config
         )
 
         dispatch({
-            type: CREATE_GRAPHICSCARD_SUCCESS,
+            type: CREATE_LAPTOP_SUCCESS,
             payload: data
         })
     } catch (error) {
         dispatch({
-            type: CREATE_GRAPHICSCARD_FAIL,
+            type: CREATE_LAPTOP_FAIL,
             payload: error.response && error.response.data.detail ? error.response.data.detail : error.message
         })
     }
 }
 
-// delete graphics card
-export const deletegraphicscard = (id) => async (dispatch, getState) => {
+// delete laptop
+export const deletelaptop = (id) => async (dispatch, getState) => {
     try {
         dispatch({
-            type:DELETE_GRAPHICSCARD_REQUEST,
+            type:DELETE_LAPTOP_REQUEST,
         })
 
         // login reducer
@@ -129,27 +129,27 @@ export const deletegraphicscard = (id) => async (dispatch, getState) => {
         }
 
         const { data } = await axios.delete(
-            `http://127.0.0.1:8000/api/graphicscard-delete/${id}/`,
+            `http://102.212.245.33/api/laptop-delete/${id}/`,
             config
         )
 
         dispatch({
-            type: DELETE_GRAPHICSCARD_SUCCESS,
+            type: DELETE_LAPTOP_SUCCESS,
             payload: data
         })
     } catch (error) {
         dispatch({
-            type: DELETE_GRAPHICSCARD_FAIL,
+            type: DELETE_LAPTOP_FAIL,
             payload: error.response && error.response.data.detail ? error.response.data.detail : error.message
         })
     }
 }
 
-// update Graphics card
-export const updategraphicscard = (id, graphicscard) => async (dispatch, getState) => {
+// update Laptop
+export const updatelaptop = (id, laptop) => async (dispatch, getState) => {
     try {
         dispatch({
-            type:UPDATE_GRAPHICSCARD_REQUEST,
+            type:UPDATE_LAPTOP_REQUEST,
         })
 
         // login reducer
@@ -165,18 +165,18 @@ export const updategraphicscard = (id, graphicscard) => async (dispatch, getStat
         }
 
         const { data } = await axios.put(
-            `http://127.0.0.1:8000/api/graphicscard-update/${id}/`,
-            graphicscard,
+            `http://102.212.245.33/api/laptop-update/${id}/`,
+            laptop,
             config
         )
 
         dispatch({
-            type: UPDATE_GRAPHICSCARD_SUCCESS,
+            type: UPDATE_LAPTOP_SUCCESS,
             payload: data
         })
     } catch (error) {
         dispatch({
-            type: UPDATE_GRAPHICSCARD_FAIL,
+            type: UPDATE_LAPTOP_FAIL,
             payload: error.response && error.response.data.detail ? error.response.data.detail : error.message
         })
     }
@@ -204,7 +204,7 @@ export const changeDeliveryStatus = (id, breakfast) => async (dispatch, getState
 
         // api call
         const { data } = await axios.put(
-            `http://127.0.0.1:8000/account/change-order-status/${id}/`,
+            `http://102.212.245.33/account/change-order-status/${id}/`,
             breakfast,
             config
         )

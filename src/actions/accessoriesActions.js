@@ -1,40 +1,41 @@
 import axios from "axios";
+
 import {
-    COMPUTERPARTS_LIST_REQUEST,
-    COMPUTERPARTS_LIST_SUCCESS,
-    COMPUTERPARTS_LIST_FAIL,
+    ACCESSORIES_LIST_REQUEST,
+    ACCESSORIES_LIST_SUCCESS,
+    ACCESSORIES_LIST_FAIL,
 
-    CREATE_COMPUTERPARTS_REQUEST,
-    CREATE_COMPUTERPARTS_FAIL,
-    CREATE_COMPUTERPARTS_SUCCESS,
+    CREATE_ACCESSORIES_REQUEST,
+    CREATE_ACCESSORIES_SUCCESS,
+    CREATE_ACCESSORIES_FAIL,
 
-    DELETE_COMPUTERPARTS_REQUEST,
-    DELETE_COMPUTERPARTS_SUCCESS,
-    DELETE_COMPUTERPARTS_FAIL,
+    DELETE_ACCESSORIES_REQUEST,
+    DELETE_ACCESSORIES_SUCCESS,
+    DELETE_ACCESSORIES_FAIL,
 
-    COMPUTERPARTS_DETAILS_REQUEST,
-    COMPUTERPARTS_DETAILS_SUCCESS,
-    COMPUTERPARTS_DETAILS_FAIL,
+    ACCESORIES_DETAIL_REQUEST,
+    ACCESORIES_DETAIL_SUCCESS,
+    ACCESORIES_DETAIL_FAIL,
 
-    UPDATE_COMPUTERPARTS_REQUEST,
-    UPDATE_COMPUTERPARTS_FAIL,
-    UPDATE_COMPUTERPARTS_SUCCESS,
+    UPDATE_ACCESSORIES_REQUEST,
+    UPDATE_ACCESSORIES_SUCCESS,
+    UPDATE_ACCESSORIES_FAIL,
 
     CHANGE_DELIVERY_STATUS_FAIL,
     CHANGE_DELIVERY_STATUS_REQUEST,
     CHANGE_DELIVERY_STATUS_SUCCESS,
-
+    
 } from "../constants/index"
 
-//COMPUTERPARTS LIST
-export const getComputerPartsList = () => async (dispatch) => {
+// accessories list
+export const getAccessoriesList = () => async (dispatch) => {
     try {
         dispatch({
-            type: COMPUTERPARTS_LIST_REQUEST
+            type: ACCESSORIES_LIST_REQUEST
         })
 
         // call api
-        const { data } = await axios.get("http://127.0.0.1:8000/api/computerparts/", {
+        const { data } = await axios.get("http://102.212.245.33/api/accessories/", {
             method: 'POST',
             mode: 'cors',
             headers:{
@@ -42,41 +43,41 @@ export const getComputerPartsList = () => async (dispatch) => {
             }
         })
         dispatch({
-            type: COMPUTERPARTS_LIST_SUCCESS,
+            type: ACCESSORIES_LIST_SUCCESS,
             payload: data
         })
     } catch (error) {
         dispatch({
-            type: COMPUTERPARTS_LIST_FAIL,
+            type: ACCESSORIES_LIST_FAIL,
             payload: error.message
         })
     }
 }
 
-export const getComputerPartsDetails = (id) => async (dispatch) =>{
+export const getAccessoriesDetails = (id) => async (dispatch) =>{
     try {
         dispatch ({
-            type: COMPUTERPARTS_DETAILS_REQUEST
+            type: ACCESORIES_DETAIL_REQUEST
         })
 
         // call api
-        const { data } = await axios.get(`http://127.0.0.1:8000/api/computerparts/${id}/`)
+        const { data } = await axios.get(`http://102.212.245.33/api/accessories/${id}/`)
         dispatch({
-            type: COMPUTERPARTS_DETAILS_SUCCESS,
+            type: ACCESORIES_DETAIL_SUCCESS,
             payload: data
         })
     } catch (error) {
         dispatch({
-            type: COMPUTERPARTS_DETAILS_FAIL,
+            type: ACCESORIES_DETAIL_FAIL,
             payload: error.message
         })
     }
 }
 
-export const createcomputerparts = (parts) => async (dispatch, getState) => {
+export const createaccessories = (accessories) => async (dispatch, getState) => {
     try {
         dispatch({
-            type:CREATE_COMPUTERPARTS_REQUEST,
+            type:CREATE_ACCESSORIES_REQUEST,
         })
 
         // login reducer
@@ -92,28 +93,28 @@ export const createcomputerparts = (parts) => async (dispatch, getState) => {
         }
 
         const { data } = await axios.post(
-            "http://127.0.0.1:8000/api/computerparts-create/",
-            parts,
+            "http://102.212.245.33/api/accessories-create/",
+            accessories,
             config
         )
 
         dispatch({
-            type: CREATE_COMPUTERPARTS_SUCCESS,
+            type: CREATE_ACCESSORIES_SUCCESS,
             payload: data
         })
     } catch (error) {
         dispatch({
-            type: CREATE_COMPUTERPARTS_FAIL,
+            type: CREATE_ACCESSORIES_FAIL,
             payload: error.response && error.response.data.detail ? error.response.data.detail : error.message
         })
     }
 }
 
-// delete computer parts
-export const deletecomputerparts = (id) => async (dispatch, getState) => {
+// delete accessories
+export const deleteaccessories = (id) => async (dispatch, getState) => {
     try {
         dispatch({
-            type:DELETE_COMPUTERPARTS_REQUEST,
+            type:DELETE_ACCESSORIES_REQUEST,
         })
 
         // login reducer
@@ -129,27 +130,27 @@ export const deletecomputerparts = (id) => async (dispatch, getState) => {
         }
 
         const { data } = await axios.delete(
-            `http://127.0.0.1:8000/api/computerparts-delete/${id}/`,
+            `http://102.212.245.33/api/accessories-delete/${id}/`,
             config
         )
 
         dispatch({
-            type: DELETE_COMPUTERPARTS_SUCCESS,
+            type: DELETE_ACCESSORIES_SUCCESS,
             payload: data
         })
     } catch (error) {
         dispatch({
-            type: DELETE_COMPUTERPARTS_FAIL,
+            type: DELETE_ACCESSORIES_FAIL,
             payload: error.response && error.response.data.detail ? error.response.data.detail : error.message
         })
     }
 }
 
-// update Computer parts
-export const updatecomputerparts = (id, parts) => async (dispatch, getState) => {
+// update Breakfast
+export const updateaccessories = (id, accessories) => async (dispatch, getState) => {
     try {
         dispatch({
-            type:UPDATE_COMPUTERPARTS_REQUEST,
+            type:UPDATE_ACCESSORIES_REQUEST,
         })
 
         // login reducer
@@ -165,18 +166,18 @@ export const updatecomputerparts = (id, parts) => async (dispatch, getState) => 
         }
 
         const { data } = await axios.put(
-            `http://127.0.0.1:8000/api/computerparts-update/${id}/`,
-            parts,
+            `http://102.212.245.33/api/accessories-update/${id}/`,
+            accessories,
             config
         )
 
         dispatch({
-            type: UPDATE_COMPUTERPARTS_SUCCESS,
+            type: UPDATE_ACCESSORIES_SUCCESS,
             payload: data
         })
     } catch (error) {
         dispatch({
-            type: UPDATE_PARTS_FAIL,
+            type: UPDATE_ACCESSORIES_FAIL,
             payload: error.response && error.response.data.detail ? error.response.data.detail : error.message
         })
     }
@@ -204,7 +205,7 @@ export const changeDeliveryStatus = (id, breakfast) => async (dispatch, getState
 
         // api call
         const { data } = await axios.put(
-            `http://127.0.0.1:8000/account/change-order-status/${id}/`,
+            `http://102.212.245.33/account/change-order-status/${id}/`,
             breakfast,
             config
         )

@@ -1,24 +1,25 @@
-import axios from "axios"
+import axios from "axios";
+
 import {
-    LAPTOP_LIST_REQUEST,
-    LAPTOP_LIST_SUCCESS,
-    LAPTOP_LIST_FAIL,
+    GAMINGPC_LIST_REQUEST,
+    GAMINGPC_LIST_SUCCESS,
+    GAMINGPC_LIST_FAIL,
 
-    CREATE_LAPTOP_REQUEST,
-    CREATE_LAPTOP_SUCCESS,
-    CREATE_LAPTOP_FAIL,
+    CREATE_GAMINGPC_REQUEST,
+    CREATE_GAMINGPC_FAIL,
+    CREATE_GAMINGPC_SUCCESS,
 
-    DELETE_LAPTOP_FAIL,
-    DELETE_LAPTOP_REQUEST,
-    DELETE_LAPTOP_SUCCESS,
+    DELETE_GAMINGPC_REQUEST,
+    DELETE_GAMINGPC_SUCCESS,
+    DELETE_GAMINGPC_FAIL,
 
-    LAPTOP_DETAILS_REQUEST,
-    LAPTOP_DETAILS_SUCCESS,
-    LAPTOP_DETAILS_FAIL,
+    GAMINGPC_DETAILS_REQUEST,
+    GAMINGPC_DETAILS_SUCCESS,
+    GAMINGPC_DETAILS_FAIL,
 
-    UPDATE_LAPTOP_REQUEST,
-    UPDATE_LAPTOP_SUCCESS,
-    UPDATE_LAPTOP_FAIL,
+    UPDATE_GAMINGPC_REQUEST,
+    UPDATE_GAMINGPC_SUCCESS,
+    UPDATE_GAMINGPC_FAIL,
 
     CHANGE_DELIVERY_STATUS_FAIL,
     CHANGE_DELIVERY_STATUS_REQUEST,
@@ -26,15 +27,15 @@ import {
 
 } from "../constants/index"
 
-// LAPTOP list
-export const getLaptopList = () => async (dispatch) => {
+// gamingpc list
+export const getGamingpcList = () => async (dispatch) => {
     try {
         dispatch({
-            type: LAPTOP_LIST_REQUEST
+            type: GAMINGPC_LIST_REQUEST
         })
 
         // call api
-        const { data } = await axios.get("http://127.0.0.1:8000/api/laptop/", {
+        const { data } = await axios.get("http://102.212.245.33/api/pc/", {
             method: 'POST',
             mode: 'cors',
             headers:{
@@ -42,41 +43,41 @@ export const getLaptopList = () => async (dispatch) => {
             }
         })
         dispatch({
-            type: LAPTOP_LIST_SUCCESS,
+            type: GAMINGPC_LIST_SUCCESS,
             payload: data
         })
     } catch (error) {
         dispatch({
-            type: LAPTOP_LIST_FAIL,
+            type: GAMINGPC_LIST_FAIL,
             payload: error.message
         })
     }
 }
 
-export const getLaptopDetails = (id) => async (dispatch) =>{
+export const getGamingPcDetails = (id) => async (dispatch) =>{
     try {
         dispatch ({
-            type: LAPTOP_DETAILS_REQUEST
+            type: GAMINGPC_DETAILS_REQUEST
         })
 
         // call api
-        const { data } = await axios.get(`http://127.0.0.1:8000/api/laptop/${id}/`)
+        const { data } = await axios.get(`http://102.212.245.33/api/pc/${id}/`)
         dispatch({
-            type: LAPTOP_DETAILS_SUCCESS,
+            type: GAMINGPC_DETAILS_SUCCESS,
             payload: data
         })
     } catch (error) {
         dispatch({
-            type: LAPTOP_DETAILS_FAIL,
+            type: GAMINGPC_DETAILS_FAIL,
             payload: error.message
         })
     }
 }
 
-export const createlaptop = (laptop) => async (dispatch, getState) => {
+export const creategamingpc = (pc) => async (dispatch, getState) => {
     try {
         dispatch({
-            type:CREATE_LAPTOP_REQUEST,
+            type:CREATE_GAMINGPC_REQUEST,
         })
 
         // login reducer
@@ -92,28 +93,28 @@ export const createlaptop = (laptop) => async (dispatch, getState) => {
         }
 
         const { data } = await axios.post(
-            "http://127.0.0.1:8000/api/laptop-create/",
-            laptop,
+            "http://102.212.245.33/api/pc-create/",
+            breakfast,
             config
         )
 
         dispatch({
-            type: CREATE_LAPTOP_SUCCESS,
+            type: CREATE_GAMINGPC_SUCCESS,
             payload: data
         })
     } catch (error) {
         dispatch({
-            type: CREATE_LAPTOP_FAIL,
+            type: CREATE_GAMINGPC_FAIL,
             payload: error.response && error.response.data.detail ? error.response.data.detail : error.message
         })
     }
 }
 
-// delete laptop
-export const deletelaptop = (id) => async (dispatch, getState) => {
+// delete GAMING PC
+export const deletegamingpc = (id) => async (dispatch, getState) => {
     try {
         dispatch({
-            type:DELETE_LAPTOP_REQUEST,
+            type:DELETE_GAMINGPC_REQUEST,
         })
 
         // login reducer
@@ -129,27 +130,27 @@ export const deletelaptop = (id) => async (dispatch, getState) => {
         }
 
         const { data } = await axios.delete(
-            `http://127.0.0.1:8000/api/laptop-delete/${id}/`,
+            `http://102.212.245.33/api/pc-delete/${id}/`,
             config
         )
 
         dispatch({
-            type: DELETE_LAPTOP_SUCCESS,
+            type: DELETE_GAMINGPC_SUCCESS,
             payload: data
         })
     } catch (error) {
         dispatch({
-            type: DELETE_LAPTOP_FAIL,
+            type: DELETE_GAMINGPC_FAIL,
             payload: error.response && error.response.data.detail ? error.response.data.detail : error.message
         })
     }
 }
 
-// update Laptop
-export const updatelaptop = (id, laptop) => async (dispatch, getState) => {
+// update Gaming Pc
+export const updategamingpc = (id, pc) => async (dispatch, getState) => {
     try {
         dispatch({
-            type:UPDATE_LAPTOP_REQUEST,
+            type:UPDATE_GAMINGPC_REQUEST,
         })
 
         // login reducer
@@ -165,18 +166,18 @@ export const updatelaptop = (id, laptop) => async (dispatch, getState) => {
         }
 
         const { data } = await axios.put(
-            `http://127.0.0.1:8000/api/laptop-update/${id}/`,
-            laptop,
+            `http://102.212.245.33/api/pc-update/${id}/`,
+            pc,
             config
         )
 
         dispatch({
-            type: UPDATE_LAPTOP_SUCCESS,
+            type: UPDATE_GAMINGPC_SUCCESS,
             payload: data
         })
     } catch (error) {
         dispatch({
-            type: UPDATE_LAPTOP_FAIL,
+            type: UPDATE_GAMINGPC_FAIL,
             payload: error.response && error.response.data.detail ? error.response.data.detail : error.message
         })
     }
@@ -204,7 +205,7 @@ export const changeDeliveryStatus = (id, breakfast) => async (dispatch, getState
 
         // api call
         const { data } = await axios.put(
-            `http://127.0.0.1:8000/account/change-order-status/${id}/`,
+            `http://102.212.245.33/account/change-order-status/${id}/`,
             breakfast,
             config
         )

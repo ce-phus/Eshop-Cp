@@ -24,7 +24,7 @@ export const addToCart = (item_type, item_id, quantity) => async (dispatch) => {
             quantity: quantity
         };
 
-        const response = await axios.post('http://127.0.0.1:8000/api/cart/', payload);
+        const response = await axios.post('http://102.212.245.33/api/cart/', payload);
         
         const { data } = response;
 
@@ -57,7 +57,7 @@ export const removeFromCart = (item_id) => async (dispatch) => {
             id: item_id           
         };
 
-        const { data } = await axios.post('http://127.0.0.1:8000/api/cart/', payload);
+        const { data } = await axios.post('http://102.212.245.33/api/cart/', payload);
 
         dispatch({
             type: REMOVE_FROM_CART_SUCCESS,
@@ -81,7 +81,7 @@ export const getTotalPrice = () => async (dispatch, getState) => {
         try {
             dispatch({ type: GET_TOTAL_PRICE_REQUEST });
 
-            const { data } = await axios.get('http://127.0.0.1:8000/api/cart/');
+            const { data } = await axios.get('http://102.212.245.33/api/cart/');
 
             // Parse the total price as a number before dispatching the action
             const totalPrice = parseFloat(data.total_price);
